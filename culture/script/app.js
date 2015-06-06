@@ -148,7 +148,14 @@ app.controller('AppCtrl', [
 
     $scope.toggleMenu = function(){
       $mdSidenav('left').toggle();
-    }
+    };
+    $scope.openMenu = function(){
+      $mdSidenav('left').open();
+    };
+    $scope.closeMenu = function(){
+      $mdSidenav('left').close();
+    };
+
 
     var buildSelectedClass = function(){
       return {
