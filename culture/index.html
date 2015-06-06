@@ -15,12 +15,12 @@
         <div class="md-toolbar-tools">
           <md-button ng-click="toggleMenu()" ng-hide="menuLockedOpen" aria-label="menu" class="md-icon-button">
             <md-icon md-svg-icon="./icons/ic_menu_24px.svg"></md-icon>
-          </md-button><span class="title">JoP's culture</span>
+          </md-button><span class="title">My culture</span>
         </div>
       </md-toolbar>
     </div>
     <div id="main" role="main" layout="row">
-      <md-sidenav md-component-id="left" md-is-locked-open="menuLockedOpen" class="md-sidenav-left md-whiteframe-z2">
+      <md-sidenav md-component-id="left" md-is-locked-open="menuLockedOpen" ng-class="{'sidenav-top-margin': !menuLockedOpen}" class="md-sidenav-left md-whiteframe-z2">
         <md-content>
           <div>
             <ul role="navigation" class="nav">
@@ -62,7 +62,7 @@
                 </md-input-container>
               </div>
             </div>
-            <md-grid-list md-cols-gt-lg="5" md-cols-lg="5" md-cols-md="4" md-cols-sm="1" md-row-height="{{mdRowHeight}}">
+            <md-grid-list md-cols-gt-lg="5" md-cols-lg="5" md-cols-md="4" md-cols-sm="1" md-row-height="{{mdRowHeight}}" autofocus>
               <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items | filter: searchString">
                 <md-card>
                   <!--img(img-fallback, ng-src="./icons/ic_album_48px.svg")--><img img-fallback ng-src="{{item.imageUrl}}">

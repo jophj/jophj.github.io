@@ -77,6 +77,9 @@ footer .message{
   color: #ccc;
 }
 
+.sidenav-top-margin{
+  margin-top: 64px !important;
+}
 md-sidenav.md-locked-open{
   z-index: 2;
   overflow: visible;
