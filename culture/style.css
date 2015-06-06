@@ -1,0 +1,144 @@
+html{
+  height: 100%;
+  overflow: hidden;
+}
+body{
+  height: 100%;
+}
+.title{
+  font-weight: 200;
+}
+#main{
+  height: 100%;
+}
+#main > .container{
+  height: 100%;
+  width: 100%;
+}
+#gridTitle{
+  margin-left: 4px;
+}
+#gridTitle h3{
+  font-size: 32px;
+  font-weight: 200;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.grid-container{
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+#gridList{
+  padding-bottom: 32px;
+}
+#gridList md-card{
+  width: 100%;
+}
+#gridList md-grid-tile.ng-enter {
+  transition: 0.5s ease-in opacity;
+  opacity: 0;
+}
+#gridList md-grid-tile.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+#gridList md-grid-tile-footer{
+  margin: 8px;
+  background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.24);
+}
+#gridList figcaption{
+  position: relative;
+  max-width: 100%;
+}
+#gridList figcaption > h3,
+#gridList figcaption > h4{
+  margin-right: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+#gridList footer{
+  margin-top: 32px;
+  height: 82px;
+  margin-bottom: 32px;
+}
+
+footer .message{
+  font-weight: 300;
+  padding-left: 15%;
+  padding-right: 15%;
+  text-align: center;
+
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  color: #ccc;
+}
+
+md-sidenav.md-locked-open{
+  z-index: 2;
+  overflow: visible;
+  width: 256px !important;
+  min-width: 256px !important;
+  max-width: 256px !important;
+}
+
+ul.nav{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  font-size: 18px;
+  font-weight: 300;
+  color: rgb(85,85,85)
+}
+.nav > li{
+  height: 48px;
+}
+.nav > li > a:focus{
+  outline: none;
+}
+.nav > li > a,
+.nav > li > a > div{
+  height: 100%;
+}
+.nav > li > a > div > .icon{
+  width: 65px;
+  padding-top: 12px;
+  padding-left: 32px;
+}
+.nav > li > a > div > .icon svg{
+  fill: white;
+}
+.nav > li > a > div > .icon > img{
+  color: white;
+  height: 24px;
+}
+.nav > li > a > div > .text{
+  padding-top: 12px;
+  padding-left: 8px;
+}
+
+.nav > li:hover,
+.nav > li.selected
+{
+  cursor: pointer;
+  color: white;
+}
+.nav > li.orange .icon,
+.nav > li.orange:hover,
+.nav > li.orange.selected{
+  background-color: #fb8521;
+}
+.nav > li.red .icon,
+.nav > li.red:hover,
+.nav > li.red.selected{
+  background-color: #ce5043;
+}
+.nav > li.azure .icon,
+.nav > li.azure:hover,
+.nav > li.azure.selected{
+  background-color: #1aa1e1;
+}

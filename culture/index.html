@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html ng-app="StarterApp">
+  <head>
+    <meta charset="utf-8">
+    <title>JoP's Culture</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.9.0/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:100,200,300,400">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body ng-controller="AppCtrl">
+    <div layout="column">
+      <md-toolbar class="md-whiteframe-z2">
+        <div class="md-toolbar-tools">
+          <md-button ng-click="toggleMenu()" ng-hide="menuLockedOpen" aria-label="menu" class="md-icon-button">
+            <md-icon md-svg-icon="./icons/ic_menu_24px.svg"></md-icon>
+          </md-button><span class="title">JoP's culture</span>
+        </div>
+      </md-toolbar>
+    </div>
+    <div id="main" role="main" layout="row">
+      <md-sidenav md-component-id="left" md-is-locked-open="menuLockedOpen" class="md-sidenav-left md-whiteframe-z2">
+        <md-content>
+          <div>
+            <ul role="navigation" class="nav">
+              <li ng-class="selectedClass['music']" class="orange"><a ng-click="sectionClicked('music')">
+                  <div layout="row">
+                    <div class="icon">
+                      <md-icon md-svg-icon="./icons/ic_headset_24px.svg"></md-icon>
+                    </div>
+                    <div class="text"><span>Music</span></div>
+                  </div></a></li>
+              <li ng-class="selectedClass['movies']" class="red"><a ng-click="sectionClicked('movies')">
+                  <div layout="row">
+                    <div class="icon">
+                      <md-icon md-svg-icon="./icons/ic_local_movies_24px.svg"></md-icon>
+                    </div>
+                    <div class="text"><span>Movies</span></div>
+                  </div></a></li>
+              <li ng-class="selectedClass['books']" class="azure"><a ng-click="sectionClicked('books')">
+                  <div layout="row">
+                    <div class="icon">
+                      <md-icon md-svg-icon="./icons/ic_library_books_24px.svg"></md-icon>
+                    </div>
+                    <div class="text"><span>Books</span></div>
+                  </div></a></li>
+            </ul>
+          </div>
+        </md-content>
+      </md-sidenav>
+      <md-content layout="column" ng-controller="gridCtrl" class="container">
+        <div scroll-load on-scroll-end="loadMore" class="grid-container">
+          <section flex id="gridList" class="md-padding">
+            <div layout="row">
+              <div id="gridTitle">
+                <h3>{{gridTitle}}</h3>
+              </div>
+              <div id="searchField" layout="row" layout-align="end center" flex>
+                <md-input-container md-no-float flex="66" flex-gt-lg="33">
+                  <input ng-model="searchString" placeholder="Search" aria-label="Search" tabindex="1">
+                </md-input-container>
+              </div>
+            </div>
+            <md-grid-list md-cols-gt-lg="5" md-cols-lg="5" md-cols-md="4" md-cols-sm="1" md-row-height="{{mdRowHeight}}">
+              <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items | filter: searchString">
+                <md-card>
+                  <!--img(img-fallback, ng-src="./icons/ic_album_48px.svg")--><img img-fallback ng-src="{{item.imageUrl}}">
+                </md-card>
+                <md-grid-tile-footer>
+                  <figcaption>
+                    <h3>{{item.title}}</h3>
+                    <h4>{{item.artist}}</h4>
+                  </figcaption>
+                </md-grid-tile-footer>
+              </md-grid-tile>
+            </md-grid-list>
+            <footer>
+              <div layout="row" layout-align="space-around">
+                <div ng-show="loading">
+                  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <div ng-show="!hasMoreData" class="message"><span>Too many books to read, too many movies too watch, too much music to listen, too many games to play, too many lives to live.</span></div>
+              </div>
+            </footer>
+          </section>
+        </div>
+      </md-content>
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.9.0/angular-material.min.js"></script>
+    <script src="script/app.js"></script>
+  </body>
+</html>
