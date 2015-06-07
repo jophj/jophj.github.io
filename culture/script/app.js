@@ -5,6 +5,7 @@ var app = angular.module('StarterApp', ['ngMaterial']);
     music
     movies
     books
+    games
   YOLO, no tiem for constants
 */
 app.factory('Music', function($http){
@@ -34,8 +35,17 @@ app.factory('Books', function($http){
     }
   };
 });
+app.factory('Games', function($http){
+  var GAMES_API = 'https://jop-culture.herokuapp.com/games/';
+  //GAMES_API = 'http://localhost:3666/games/';
+  return {
+    saved: function(offset, limit){
+      return $http.get(GAMES_API+ 'saved', {params: {"limit": limit, "offset": offset}});
+    }
+  };
+});
 
-app.factory('DataProvider', ['Music', 'Movies', 'Books', function(Music, Movies, Books){
+app.factory('DataProvider', ['Music', 'Movies', 'Books', 'Games', function(Music, Movies, Books, Games){
 
   /* Here's the configurations of data providers */
   var providers = {
@@ -47,6 +57,9 @@ app.factory('DataProvider', ['Music', 'Movies', 'Books', function(Music, Movies,
     },
     "books": {
       "saved": Books.saved
+    },
+    "games": {
+      "saved": Games.saved
     }
   };
 
@@ -126,7 +139,17 @@ app.factory('DataService', ['DataProvider', function(DataProvider){
       isLoading: false,
       hasMoreData: true,
       loadMore: new Loader('books').loadMore
+    },
+    "games": {
+      cachedData: [],
+      name: 'Games',
+      offset: 0,
+      oldOffset: -1,
+      isLoading: false,
+      hasMoreData: true,
+      loadMore: new Loader('games').loadMore
     }
+
   };
 
   var selector = function(source){
@@ -167,6 +190,9 @@ app.controller('AppCtrl', [
         },
         "books": {
           "selected": $scope.section == 'books'
+        },
+        "games": {
+          "selected": $scope.section == 'games'
         }
       };
     };
@@ -239,6 +265,8 @@ app.controller('gridCtrl', [
         $scope.mdRowHeight = '2:3';
       else if (newValue == 'books')
         $scope.mdRowHeight = '2:3';
+      else if (newValue == 'games')
+        $scope.mdRowHeight = '8:3';
 
       $scope.loadMore();
     });

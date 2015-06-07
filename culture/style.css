@@ -34,6 +34,13 @@ body{
 #gridList md-card{
   width: 100%;
 }
+#gridList md-grid-tile{
+  transition: transform .2s ease;
+}
+#gridList md-grid-tile:hover{
+  transform: scale(1.2);
+  z-index: 2;
+}
 #gridList md-grid-tile.ng-enter {
   transition: 0.5s ease-in opacity;
   opacity: 0;
@@ -44,6 +51,9 @@ body{
 #gridList md-grid-tile-footer{
   margin: 8px;
   background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.24);
+}
+#gridList > md-grid-list > md-grid-tile > figure > md-card > div > img{
+  vertical-align: bottom;
 }
 #gridList figcaption{
   position: relative;
@@ -144,4 +154,9 @@ ul.nav{
 .nav > li.azure:hover,
 .nav > li.azure.selected{
   background-color: #1aa1e1;
+}
+.nav > li.green .icon,
+.nav > li.green:hover,
+.nav > li.green.selected{
+  background-color: #b3c833;
 }

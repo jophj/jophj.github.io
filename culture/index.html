@@ -2,10 +2,10 @@
 <html ng-app="StarterApp">
   <head>
     <meta charset="utf-8">
-    <title>JoP's Culture</title>
+    <title>My culture</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.9.0/angular-material.min.css">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:100,200,300,400">
     <link rel="stylesheet" href="style.css">
   </head>
@@ -45,6 +45,13 @@
                     </div>
                     <div class="text"><span>Books</span></div>
                   </div></a></li>
+              <li ng-class="selectedClass['games']" class="green"><a ng-click="sectionClicked('games')">
+                  <div layout="row">
+                    <div class="icon">
+                      <md-icon md-svg-icon="./icons/ic_steam_24px.svg"></md-icon>
+                    </div>
+                    <div class="text"><span>Games</span></div>
+                  </div></a></li>
             </ul>
           </div>
         </md-content>
@@ -65,12 +72,18 @@
             <md-grid-list md-cols-gt-lg="5" md-cols-lg="5" md-cols-md="4" md-cols-sm="1" md-row-height="{{mdRowHeight}}" autofocus>
               <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items | filter: searchString">
                 <md-card>
-                  <!--img(img-fallback, ng-src="./icons/ic_album_48px.svg")--><img img-fallback ng-src="{{item.imageUrl}}">
+                  <div><img img-fallback ng-src="{{item.imageUrl}}">
+                    <md-tooltip>{{item.title}}</md-tooltip>
+                  </div>
                 </md-card>
-                <md-grid-tile-footer>
+                <md-grid-tile-footer ng-show="item.title &amp;&amp; item.artist">
                   <figcaption>
-                    <h3>{{item.title}}</h3>
-                    <h4>{{item.artist}}</h4>
+                    <h3>{{item.title}}
+                      <md-tooltip>{{item.title}}</md-tooltip>
+                    </h3>
+                    <h4>{{item.artist}}
+                      <md-tooltip>{{item.artist}}</md-tooltip>
+                    </h4>
                   </figcaption>
                 </md-grid-tile-footer>
               </md-grid-tile>
@@ -90,7 +103,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.9.0/angular-material.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
     <script src="script/app.js"></script>
   </body>
 </html>
