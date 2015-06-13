@@ -45,6 +45,55 @@ app.factory('Games', function($http){
   };
 });
 
+app.factory('QuoteProvider', function($http){
+  var quotes = {};
+ 
+  quotes['books'] = [
+    'Harry\'s suspension on disbelief blew completely out the window',
+    "I only want power so I can get books",
+    "World domination is such an ugly phrase. I prefer to call it world optimisation",
+    "Trying and getting hurt can't possibly be worse for you than being... stuck",
+    "There is light in the world, and it is us!",
+    "I see little hope for democracy as an effective form of government, but I admire the poetry of how it makes its victims complicit in their own destruction",
+    "There was Eru, the One, who in Arda is called Ilúvatar"
+  ];
+
+  quotes['games'] = [
+    "The cake is a lie",
+    "A man chooses. A slave obeys.",
+    "When life gives you lemons, don't make lemonade. Make life take the lemons back! Get mad! I don't want your damn lemons! What am I supposed to do with these?!",
+    "Space? Space! Spaaaaaaaaaace!",
+    "BIG DEAL. I CAN USE INNUENDO TOO. TONIGHT'S FIGHT IS BETWEEN FLYBOY AND THE VAULT HUNTER...BLOWJOBS!",
+    "Stairs?! Nooooooooo",
+    "Rise and shine, Mister Freeman. Rise and... shine.",
+    "Heavy machine gun!"
+  ];
+
+  quotes['music'] = [
+    "Voglio un pensiero superficiale che renda la pella splendida",
+    "Forse non è proprio legale sai ma sei bella vestita di lividi",
+    "Those who died are justified, for wearing the badge, they're the chosen whites",
+    "We are the Priests of the Temples of Syrinx",
+    "Tu guarda dove ci ha portato il sole qui intorno è tutto lasciato andare",
+    "Io sono il corvo Joe, faccio paura",
+    "I've heard the warning, Well curse my name, I'll keep on laughing, No regret, no regret",
+    "Morgoth I cried, It's my oath, So don't fear the eyes, Of the dark Lord"
+  ];
+  quotes['movies'] = [
+    "Do not go gentle into that good night; Old age should burn and rave at close of day. Rage, rage against the dying of the light.",
+    "Incorrect. I am not AI. My codename is project two-five-zero-one. I am a living, thinking entity that was created in the sea of information.",
+    "You take the blue pill - the story ends, you wake up in your bed and believe whatever you want to believe. You take the red pill - you stay in Wonderland and I show you how deep the rabbit-hole goes.",
+    "This... is the Construct"
+  ];
+
+  return {
+    getRandomQuote: function(section){
+      var i = Math.floor(Math.random() * quotes[section].length);
+      return quotes[section][i];
+    }
+  };
+});
+
 app.factory('DataProvider', ['Music', 'Movies', 'Books', 'Games', function(Music, Movies, Books, Games){
 
   /* Here's the configurations of data providers */
@@ -216,6 +265,17 @@ app.controller('AppCtrl', [
     }
 
     $scope.selectedClass = buildSelectedClass();
+  }
+]);
+
+app.controller('quoteCtrl', [
+  '$scope', 'QuoteProvider',
+  function($scope, QuoteProvider){
+
+    $scope.$watch('section', function(newValue, oldValue){
+      $scope.quote = QuoteProvider.getRandomQuote($scope.section);
+      console.log($scope.section);
+    });
   }
 ]);
 

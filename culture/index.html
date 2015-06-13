@@ -15,7 +15,9 @@
         <div class="md-toolbar-tools">
           <md-button ng-click="toggleMenu()" ng-hide="menuLockedOpen" aria-label="menu" class="md-icon-button">
             <md-icon md-svg-icon="./icons/ic_menu_24px.svg"></md-icon>
-          </md-button><span class="title">My culture</span>
+          </md-button>
+          <div class="title"><span>My culture</span></div>
+          <p ng-controller="quoteCtrl" class="quote">{{quote}}</p>
         </div>
       </md-toolbar>
     </div>
