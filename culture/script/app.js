@@ -223,6 +223,7 @@ app.controller('gridCtrl', [
   '$scope','$element', 'DataService',
   function($scope, $element, DataService){
 
+    $scope.collections = {};
     var containerElement = $element[0];
     var gridElement = $element[0].children[0];
 
@@ -255,7 +256,8 @@ app.controller('gridCtrl', [
     });
 
     $scope.$watch('section', function(newValue, oldValue){
-      $scope.items = DataService(newValue).cachedData;
+      $scope.currentSection = newValue;
+      $scope.collections[newValue] = DataService(newValue).cachedData;
       $scope.gridTitle = DataService(newValue).name;
       $scope.hasMoreData = DataService(newValue).hasMoreData;
 
@@ -264,7 +266,7 @@ app.controller('gridCtrl', [
       else if (newValue == 'movies')
         $scope.mdRowHeight = '2:3';
       else if (newValue == 'books')
-        $scope.mdRowHeight = '2:3';
+        $scope.mdRowHeight = '16:25';
       else if (newValue == 'games')
         $scope.mdRowHeight = '8:3';
 

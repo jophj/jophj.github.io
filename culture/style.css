@@ -33,12 +33,14 @@ body{
 }
 #gridList md-card{
   width: 100%;
+  margin-top: auto;
 }
 #gridList md-grid-tile{
   transition: transform .2s ease;
 }
 #gridList md-grid-tile:hover{
-  transform: scale(1.2);
+          filter: brightness(90%);
+  -webkit-filter: brightness(90%);
   z-index: 2;
 }
 #gridList md-grid-tile.ng-enter {

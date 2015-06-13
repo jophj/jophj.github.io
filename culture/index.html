@@ -69,25 +69,25 @@
                 </md-input-container>
               </div>
             </div>
-            <md-grid-list md-cols-gt-lg="5" md-cols-lg="5" md-cols-md="4" md-cols-sm="1" md-row-height="{{mdRowHeight}}" autofocus>
-              <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items | filter: searchString">
-                <md-card>
-                  <div><img img-fallback ng-src="{{item.imageUrl}}">
-                    <md-tooltip>{{item.title}}</md-tooltip>
-                  </div>
-                </md-card>
-                <md-grid-tile-footer ng-show="item.title &amp;&amp; item.artist">
-                  <figcaption>
-                    <h3>{{item.title}}
-                      <md-tooltip>{{item.title}}</md-tooltip>
-                    </h3>
-                    <h4>{{item.artist}}
-                      <md-tooltip>{{item.artist}}</md-tooltip>
-                    </h4>
-                  </figcaption>
-                </md-grid-tile-footer>
-              </md-grid-tile>
-            </md-grid-list>
+            <div ng-repeat="(section, items) in collections" ng-show="currentSection == section">
+              <md-grid-list md-cols-gt-lg="5" md-cols-lg="5" md-cols-md="4" md-cols-sm="1" md-row-height="{{mdRowHeight}}" autofocus>
+                <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items | filter: searchString">
+                  <md-card>
+                    <div><img img-fallback ng-src="{{item.imageUrl}}"></div>
+                  </md-card>
+                  <md-grid-tile-footer ng-show="item.title &amp;&amp; item.artist">
+                    <figcaption>
+                      <h3>{{item.title}}
+                        <md-tooltip>{{item.title}}</md-tooltip>
+                      </h3>
+                      <h4>{{item.artist}}
+                        <md-tooltip>{{item.artist}}</md-tooltip>
+                      </h4>
+                    </figcaption>
+                  </md-grid-tile-footer>
+                </md-grid-tile>
+              </md-grid-list>
+            </div>
             <footer>
               <div layout="row" layout-align="space-around">
                 <div ng-show="loading">
