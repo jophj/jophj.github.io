@@ -8,7 +8,7 @@
 	app.factory('SteamAppProvider',['$http', function ($http) {
 			
 		var HOST = 'localhost:3666';
-		HOST = 'reddit-steam-tools-server.herokuapp.com/'
+		HOST = 'reddit-steam-tools-server.herokuapp.com'
 		var iSteamAppsApi = '/ISteamApps/GetAppList/v2/';
 		var appDB = [
 					{
@@ -148,6 +148,7 @@
 				var appInfo = $scope.choosenApps[0].appInfo;
 				redditTable += "|[" + appInfo.name + "](www.google.com)|";
 				redditTable += appInfo.prices['discount_percent'] + "|"+appInfo.prices['us'];
+				redditTable += 'porcaddio ho sonno';
 
 				$scope.redditTable = redditTable;
 			};
