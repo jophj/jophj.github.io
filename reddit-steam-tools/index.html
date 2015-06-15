@@ -19,12 +19,13 @@
     </div>
     <div role="main" layout="row">
       <md-content layout="row" layout-align="center start" layout-padding class="container">
-        <div flex="66">
+        <div flex="80">
           <form ng-submit="onSearchApp()">
             <md-input-container>
               <label>Search</label>
               <input ng-model="searchString">
             </md-input-container>
+            <md-button flex ng-click="clearResults()" style="width: 100%" class="md-raised md-warn">Clear</md-button>
           </form>
           <div ng-if="isLoading">
             <p style="text-align: center;" class="md-display-1">Loading. Wait for it...</p>
@@ -54,7 +55,7 @@
           </div>
           <div>
             <md-input-container flex>
-              <textarea ng-model="redditTable"></textarea>
+              <textarea ng-model="redditTable" aria-label="reddit table"></textarea>
             </md-input-container>
           </div>
         </div>
