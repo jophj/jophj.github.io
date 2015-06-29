@@ -1,7 +1,4 @@
 (function () {
-	
-	
-
 	/* global angular */
 	var app = angular.module('reddit-steam-tools', ['ngMaterial']);
 
@@ -134,10 +131,11 @@
 
 			$scope.isLoading = true;
 			$scope.choosenApps = [];
+			$scope.searchString = 'half';
 
-			SteamAppProvider.initDB(function(){
-				$scope.isLoading = false;
-			});
+			// SteamAppProvider.initDB(function(){
+			// 	$scope.isLoading = false;
+			// });
 
 			$scope.clearResults = function(){
 				$scope.apps = [];
@@ -145,7 +143,6 @@
 			$scope.addApp = function(index){
 				var app = $scope.apps[index];
 				$scope.choosenApps.push(app);
-				$scope.apps.splice(index, 1);
 				SteamAppProvider.getAppInfo(app.appid, function(appInfo){
 					app.appInfo = appInfo;
 				});
@@ -156,12 +153,19 @@
 				$scope.choosenApps.splice(index, 1);
 			};
 
+			$scope.$watch('searchString', function(newValue, oldValue){
+				$scope.onSearchApp();
+			});
 			$scope.onSearchApp = function(){
 				if ($scope.searchString.length > 0)
 					$scope.apps = SteamAppProvider.search($scope.searchString);
 				else
 					$scope.apps = [];
+
+				$scope.choosenApps = $scope.apps.splice(0, 3);
 			};
+
+			$scope.onSearchApp();
 
 			$scope.generateText = function(){
 
